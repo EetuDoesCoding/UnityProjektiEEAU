@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198000010954990942}
   - component: {fileID: 199000010917630434}
   m_Layer: 0
-  m_Name: Ef_Bullet_01
+  m_Name: gunParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
