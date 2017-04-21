@@ -15,7 +15,6 @@ public class Shoot : MonoBehaviour {
 
 	void Awake () 
 	{
-		myAudioSource = GetComponent<AudioSource>();
 
 	}
 	// Use this for initialization
@@ -27,10 +26,19 @@ public class Shoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		myAudioSource = GetComponent<AudioSource>();
+
 		if (Input.GetKey (KeyCode.Mouse0) && counter > delayTime) 
 		{
 			Instantiate (bullet, transform.position, transform.rotation);
 			counter = 0;
+
+//			RaycastHit hit;
+//			Ray ray = new Ray (transform.position, transform.forward);
+//			if (Physics.Raycast (ray, out hit, 100f)) 
+//			{
+//				Instantiate ();
+//			}
 		}
 		counter += Time.deltaTime;
 	}

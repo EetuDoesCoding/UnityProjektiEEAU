@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9738b7ba2db134aad881b65c5fe264c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 10
 --- !u!198 &198000010954990942
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -66,7 +66,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     scalar: 0
     maxCurve:
@@ -109,7 +109,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1018811465
+  randomSeed: 1018811456
   InitialModule:
     serializedVersion: 3
     enabled: 1
