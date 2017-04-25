@@ -10,22 +10,25 @@ public class Shoot : MonoBehaviour {
 	public float delayTime = 8;
 	public float range = 100f;
 
-	AudioSource gunAudio;
-
-
-
 	private float counter = 0;
+
+	AudioSource gunAudio;
+	ParticleSystem gunParticles;
+	Ray shootRay;                                   // A ray from the gun end forwards.
+	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
+	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+
 
 
 	void Awake () 
 	{
+		// Create a layer mask for the Shootable layer.
+		shootableMask = LayerMask.GetMask ("Shootable");
+
 		gunAudio = GetComponent<AudioSource> ();
+		gunParticles = GetComponent<ParticleSystem> ();
 	}
-	// Use this for initialization
-	void Start () 
-	{
 		
-	}
 
 	void Update () 
 	{
@@ -38,19 +41,32 @@ public class Shoot : MonoBehaviour {
 			Instantiate (bullet, transform.position, transform.rotation);
 			counter = 0;
 
+			// Play the gun shot audioclip.
 			gunAudio.Play ();
-		}
 
-//		if (Input.GetKey (KeyCode.Mouse0) && counter > delayTime) 
-//		{
-//			Instantiate (bullet, transform.position, transform.rotation);
-//			counter = 0;
+			// Stop the particles from playing if they were, then start the particles.
+			gunParticles.Stop ();
+			gunParticles.Play ();
 
-//			RaycastHit hit;
-//			Ray ray = new Ray (transform.position, transform.forward);
-//			if (Physics.Raycast (ray, out hit, 100f)) 
-//			{
-//				Instantiate  ();
-//			}
+			// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+			shootRay.origin = transform.position;
+			shootRay.direction = transform.forward;
+
+			// Perform the raycast against gameobjects on the shootable layer and if it hits something...
+			if (Physics.Raycast (shootRay, out shootHit, range, shootableMask)) 
+			{
+				// Try and find an EnemyHealth script on the gameobject hit.
+				EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
+
+				// If the EnemyHealth component exist...
+				if (enemyHealth != null) 
+				{
+					// ... the enemy should take damage.
+					enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+				}
+			}
+		
+		
 		}
+	}
 }
