@@ -12,6 +12,7 @@ public class Shoot : MonoBehaviour {
 
 	private float counter = 0;
 
+
 	AudioSource gunAudio;
 	ParticleSystem gunParticles;
 	Ray shootRay;                                   // A ray from the gun end forwards.
