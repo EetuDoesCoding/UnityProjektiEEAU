@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
 		// Setting up the references.
 		anim = GetComponent <Animator> ();
 		enemyAudio = GetComponent <AudioSource> ();
-		hitParticles = GetComponentInChildren <ParticleSystem> ();
+//		hitParticles = GetComponentInChildren <ParticleSystem> ();
 		capsuleCollider = GetComponent <CapsuleCollider> ();
 
 		// Setting the current health when the enemy first spawns.
@@ -56,10 +56,10 @@ public class EnemyHealth : MonoBehaviour
 		currentHealth -= amount;
 
 		// Set the position of the particle system to where the hit was sustained.
-		hitParticles.transform.position = hitPoint;
+//		hitParticles.transform.position = hitPoint;
 
 		// And play the particles.
-		hitParticles.Play();
+//		hitParticles.Play();
 
 		// If the current health is less than or equal to zero...
 		if(currentHealth <= 0)
