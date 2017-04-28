@@ -10,6 +10,15 @@ public class Shoot : MonoBehaviour {
 	public float delayTime = 8;
 	public float range = 100f;
 
+
+	// Ammo
+	public int maxAmmo = 10;
+	private int currentAmmo;
+	public float reloadTime = 2f;
+	private bool isReloading = false;
+
+	public Animator animator;
+
 	private float counter = 0;
 
 
@@ -18,6 +27,14 @@ public class Shoot : MonoBehaviour {
 	Ray shootRay;                                   // A ray from the gun end forwards.
 	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
 	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+
+
+
+	void Start ()
+	{
+		currentAmmo = maxAmmo;
+	}
+		
 
 
 
@@ -31,14 +48,28 @@ public class Shoot : MonoBehaviour {
 	}
 		
 
-	void Update () 
-	{
-		counter += Time.deltaTime;
 
+
+	void Update () {
+
+		if (isReloading)
+		return;
+
+
+		if (currentAmmo <= 0) 
+		{
+			StartCoroutine (Reload ());
+			return;
+		}
+
+
+		counter += Time.deltaTime;
 
 		// If the Fire1 button is being press and it's time to fire...
 		if(Input.GetButton ("Fire1") && counter >= delayTime)
 		{
+			currentAmmo--;
+
 			Instantiate (bullet, transform.position, transform.rotation);
 			counter = 0;
 
@@ -66,8 +97,24 @@ public class Shoot : MonoBehaviour {
 					enemyHealth.TakeDamage (damagePerShot, shootHit.point);
 				}
 			}
-		
-		
 		}
 	}
+		
+
+
+	IEnumerator Reload ()
+	{
+		isReloading = true;
+		Debug.Log ("Reloading...");
+
+		animator.SetBool ("Reloading", true);
+
+		yield return new WaitForSeconds (reloadTime);
+
+		animator.SetBool ("Reloading", false);
+
+		currentAmmo = maxAmmo;
+		isReloading = false;
+	}
+
 }
