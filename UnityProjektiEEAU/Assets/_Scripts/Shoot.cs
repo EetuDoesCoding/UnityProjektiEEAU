@@ -13,7 +13,8 @@ public class Shoot : MonoBehaviour {
 
 	// Ammo
 	public int maxAmmo = 10;
-	private int currentAmmo;
+	private int clip;
+	private int reserve = 50;
 	public float reloadTime = 2f;
 	private bool isReloading = false;
 
@@ -32,7 +33,7 @@ public class Shoot : MonoBehaviour {
 
 	void Start ()
 	{
-		currentAmmo = maxAmmo;
+		clip = maxAmmo;
 	}
 		
 
@@ -56,11 +57,17 @@ public class Shoot : MonoBehaviour {
 		return;
 
 
-		if (currentAmmo <= 0) 
+		if (Input.GetButton ("Fire2")&& clip < 10) 
 		{
 			StartCoroutine (Reload ());
 			return;
 		}
+		if (clip <= 0) 
+		{
+			StartCoroutine (Reload ());
+			return;
+		}
+			
 
 
 		counter += Time.deltaTime;
@@ -68,7 +75,7 @@ public class Shoot : MonoBehaviour {
 		// If the Fire1 button is being press and it's time to fire...
 		if(Input.GetButton ("Fire1") && counter >= delayTime)
 		{
-			currentAmmo--;
+			clip--;
 
 			Instantiate (bullet, transform.position, transform.rotation);
 			counter = 0;
@@ -113,7 +120,7 @@ public class Shoot : MonoBehaviour {
 
 		animator.SetBool ("Reloading", false);
 
-		currentAmmo = maxAmmo;
+		clip = maxAmmo;
 		isReloading = false;
 	}
 
