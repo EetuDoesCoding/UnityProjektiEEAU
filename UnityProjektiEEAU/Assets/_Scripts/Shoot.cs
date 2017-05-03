@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour {
@@ -12,9 +13,15 @@ public class Shoot : MonoBehaviour {
 
 
 	// Ammo
-	public int maxAmmo = 10;
-	private int clip;
-	private int reserve = 50;
+//	public int maxAmmo = 10;
+//	private int clip;
+//	private int reserve = 50;
+
+	//NEW//	
+	public float Shots, Ammoleft, full, ShotsFired, StartAmmount;
+	public Text In, Left;
+
+
 	public float reloadTime = 2f;
 	private bool isReloading = false;
 
@@ -33,22 +40,21 @@ public class Shoot : MonoBehaviour {
 
 	void Start ()
 	{
-		clip = maxAmmo;
+//		clip = maxAmmo;
+
+		Shots = StartAmmount; //NEW// Start the Clip Ammo with the Start Amount and to keep the Whole Ammo from being subtracted too much
 	}
 		
-
 
 
 	void Awake () 
 	{
 		// Create a layer mask for the Shootable layer.
 		shootableMask = LayerMask.GetMask ("Shootable");
-
 		gunAudio = GetComponent<AudioSource> ();
 		gunParticles = GetComponent<ParticleSystem> ();
 	}
 		
-
 
 
 	void Update () {
@@ -57,17 +63,36 @@ public class Shoot : MonoBehaviour {
 		return;
 
 
-		if (Input.GetButton ("Fire2")&& clip < 10) 
+//		if (Input.GetButton ("Fire2")&& Shots < 10) 
+//		{
+//			StartCoroutine (Reload ());
+//			return;
+//		}
+//		if (Shots <= 0) 
+//		{
+//			StartCoroutine (Reload ());
+//			return;
+//		}
+
+		//NEW//
+		if (Input.GetButton ("Fire2") && Ammoleft > 0) //if the Whole Ammo is greater than 0 and the Reload button is pressed, then start the Reload Sequence
 		{
 			StartCoroutine (Reload ());
-			return;
+
 		}
-		if (clip <= 0) 
+		if (Input.GetButton ("Fire1") && Shots <= 0 && Ammoleft > 0) //if the Whole Ammo is greater than 0 and if the Shots are less than or equal to 0 and the Fire Button is pressed, then start the Reload Sequence
 		{
 			StartCoroutine (Reload ());
-			return;
+
 		}
-			
+		if (Ammoleft <= 0)
+		{
+			Ammoleft = 0;
+		}
+		AmmoLeftIn();
+		LeftInClip();
+	
+
 
 
 		counter += Time.deltaTime;
@@ -75,35 +100,36 @@ public class Shoot : MonoBehaviour {
 		// If the Fire1 button is being press and it's time to fire...
 		if(Input.GetButton ("Fire1") && counter >= delayTime)
 		{
-			clip--;
+//			clip--;
+			
+				Shots -= 1;
+				ShotsFired += 1;
 
-			Instantiate (bullet, transform.position, transform.rotation);
-			counter = 0;
+				Instantiate (bullet, transform.position, transform.rotation);
+				counter = 0;
 
-			// Play the gun shot audioclip.
-			gunAudio.Play ();
+				// Play the gun shot audioclip.
+				gunAudio.Play ();
 
-			// Stop the particles from playing if they were, then start the particles.
-			gunParticles.Stop ();
-			gunParticles.Play ();
+				// Stop the particles from playing if they were, then start the particles.
+				gunParticles.Stop ();
+				gunParticles.Play ();
 
-			// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
-			shootRay.origin = transform.position;
-			shootRay.direction = transform.forward;
+				// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+				shootRay.origin = transform.position;
+				shootRay.direction = transform.forward;
 
-			// Perform the raycast against gameobjects on the shootable layer and if it hits something...
-			if (Physics.Raycast (shootRay, out shootHit, range, shootableMask)) 
-			{
-				// Try and find an EnemyHealth script on the gameobject hit.
-				EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
+				// Perform the raycast against gameobjects on the shootable layer and if it hits something...
+				if (Physics.Raycast (shootRay, out shootHit, range, shootableMask)) {
+					// Try and find an EnemyHealth script on the gameobject hit.
+					EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
 
-				// If the EnemyHealth component exist...
-				if (enemyHealth != null) 
-				{
-					// ... the enemy should take damage.
-					enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+					// If the EnemyHealth component exist...
+					if (enemyHealth != null) {
+						// ... the enemy should take damage.
+						enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+					}
 				}
-			}
 		}
 	}
 		
@@ -118,10 +144,37 @@ public class Shoot : MonoBehaviour {
 
 		yield return new WaitForSeconds (reloadTime);
 
-		animator.SetBool ("Reloading", false);
+		//NEW//
+		if(Shots > 0) //if the shots are bigger than 0, then subtract the Whole Ammo from the remainder of a the Ammo Clip to create a Full Ammo Clip
+		{
+			Ammoleft -= ShotsFired;
+			Shots = full;
+		}
+		//NEW//
+		if (Shots <= 0) //if the shots are less than or equal than 0, then refill the Empty Clip to a Full Clip abd subtract it from the Whole Ammo
+		{
+			Ammoleft -= full;
+			Shots = full;
+		}
+		//NEW//
+		if (Shots > 0 && Ammoleft < 0) //if the shots are bigger than 0 and the Whole Ammo left is less than 0, then add the last ammount of Ammo into the clip
+		{
+			Shots += Ammoleft;
+			Ammoleft -= ShotsFired;
+		}
 
-		clip = maxAmmo;
+		animator.SetBool ("Reloading", false);
+		ShotsFired = 0; //return the remainder to 0
+//		clip = maxAmmo;
 		isReloading = false;
 	}
 
+	void LeftInClip()
+	{
+		Left.text = "" + Shots.ToString();
+	}
+	void AmmoLeftIn()
+	{
+		In.text = "" + Ammoleft.ToString();
+	}
 }
