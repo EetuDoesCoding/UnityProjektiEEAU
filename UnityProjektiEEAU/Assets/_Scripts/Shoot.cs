@@ -101,7 +101,8 @@ public class Shoot : MonoBehaviour {
 		if(Input.GetButton ("Fire1") && counter >= delayTime)
 		{
 //			clip--;
-			
+				
+				//NEW//
 				Shots -= 1;
 				ShotsFired += 1;
 
@@ -169,12 +170,14 @@ public class Shoot : MonoBehaviour {
 		isReloading = false;
 	}
 
+	//NEW//
 	void LeftInClip()
 	{
 		Left.text = "" + Shots.ToString();
 	}
+	//NEW//
 	void AmmoLeftIn()
 	{
-		In.text = "" + Ammoleft.ToString();
+		In.text = "/ " + Ammoleft.ToString();
 	}
 }
