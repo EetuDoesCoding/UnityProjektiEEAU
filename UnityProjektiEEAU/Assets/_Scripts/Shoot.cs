@@ -18,7 +18,8 @@ public class Shoot : MonoBehaviour {
 //	private int reserve = 50;
 
 	//NEW//	
-	public float Shots, Ammoleft, full, ShotsFired, StartAmmount;
+	public float Ammoleft, full, StartAmmount;
+	private float ShotsFired, Shots;
 	public Text In, Left;
 
 
@@ -102,6 +103,11 @@ public class Shoot : MonoBehaviour {
 		{
 //			clip--;
 				
+			if (Shots == 0 && Ammoleft == 0) 
+			{
+				return;
+			}
+
 				//NEW//
 				Shots -= 1;
 				ShotsFired += 1;
