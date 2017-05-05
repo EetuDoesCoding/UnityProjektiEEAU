@@ -18,7 +18,7 @@ public class Shoot : MonoBehaviour {
 //	private int reserve = 50;
 
 	//NEW//	
-	public float Ammoleft, full, StartAmount;
+	public float Ammoleft, full, StartAmmount;
 	private float ShotsFired, Shots;
 	public Text In, Left;
 
@@ -43,7 +43,7 @@ public class Shoot : MonoBehaviour {
 	{
 //		clip = maxAmmo;
 
-		Shots = StartAmount; //NEW// Start the Clip Ammo with the Start Amount and to keep the Whole Ammo from being subtracted too much
+		Shots = StartAmmount; //NEW// Start the Clip Ammo with the Start Amount and to keep the Whole Ammo from being subtracted too much
 	}
 		
 
