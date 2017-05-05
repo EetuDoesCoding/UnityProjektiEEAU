@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MoveBullet : MonoBehaviour {
 
+	public float lifetime = 2.0f;
+
 	public float speed = 1f;
 
-	void Start ()
+	void  Awake ()
 	{
-		
+		Destroy(gameObject, lifetime);
 	}
 
 	void Update ()
