@@ -41,11 +41,15 @@ public class Shoot : MonoBehaviour {
 
 	void Start ()
 	{
-//		clip = maxAmmo;
-
 		Shots = StartAmmount; //NEW// Start the Clip Ammo with the Start Amount and to keep the Whole Ammo from being subtracted too much
 	}
 		
+
+	void OnEnable ()
+	{
+		isReloading = false;
+		animator.SetBool ("Reloading", false);
+	}
 
 
 	void Awake () 
@@ -62,18 +66,6 @@ public class Shoot : MonoBehaviour {
 
 		if (isReloading)
 		return;
-
-
-//		if (Input.GetButton ("Fire2")&& Shots < 10) 
-//		{
-//			StartCoroutine (Reload ());
-//			return;
-//		}
-//		if (Shots <= 0) 
-//		{
-//			StartCoroutine (Reload ());
-//			return;
-//		}
 
 		//NEW//
 		if (Input.GetButton ("Fire2") && Ammoleft > 0) //if the Whole Ammo is greater than 0 and the Reload button is pressed, then start the Reload Sequence
@@ -99,10 +91,8 @@ public class Shoot : MonoBehaviour {
 		counter += Time.deltaTime;
 
 		// If the Fire1 button is being press and it's time to fire...
-		if(Input.GetButton ("Fire1") && counter >= delayTime)
+		if(Input.GetButton ("Fire1") && counter >= delayTime && isReloading == false)
 		{
-//			clip--;
-				
 			if (Shots == 0 && Ammoleft == 0) 
 			{
 				return;
@@ -149,7 +139,7 @@ public class Shoot : MonoBehaviour {
 
 		animator.SetBool ("Reloading", true);
 
-		yield return new WaitForSeconds (reloadTime);
+		yield return new WaitForSeconds (reloadTime - .25f);
 
 		//NEW//
 		if(Shots > 0) //if the shots are bigger than 0, then subtract the Whole Ammo from the remainder of a the Ammo Clip to create a Full Ammo Clip
@@ -171,8 +161,8 @@ public class Shoot : MonoBehaviour {
 		}
 
 		animator.SetBool ("Reloading", false);
+		yield return new WaitForSeconds (.25f);
 		ShotsFired = 0; //return the remainder to 0
-//		clip = maxAmmo;
 		isReloading = false;
 	}
 
