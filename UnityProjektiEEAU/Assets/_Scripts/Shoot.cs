@@ -33,9 +33,9 @@ public class Shoot : MonoBehaviour {
 
 	AudioSource gunAudio;
 	ParticleSystem gunParticles;
-	Ray shootRay;                                   // A ray from the gun end forwards.
+	Ray shootRay;                                    // A ray from the gun end forwards.
 	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
-	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+	int shootableMask;                             // A layer mask so the raycast only hits things on the shootable layer.
 
 
 
@@ -66,9 +66,9 @@ public class Shoot : MonoBehaviour {
 
 		if (isReloading)
 		return;
-
+					
 		//NEW//
-		if (Input.GetButton ("Fire2") && Ammoleft > 0) //if the Whole Ammo is greater than 0 and the Reload button is pressed, then start the Reload Sequence
+		if (Input.GetButton ("Fire2") && Ammoleft > 0 && ShotsFired > 0) //if the Whole Ammo is greater than 0 and the Reload button is pressed, then start the Reload Sequence
 		{
 			StartCoroutine (Reload ());
 

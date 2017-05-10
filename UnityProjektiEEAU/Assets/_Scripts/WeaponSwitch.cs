@@ -8,15 +8,19 @@ public class WeaponSwitch : MonoBehaviour {
 	public GameObject weapon01;
 	[SerializeField]
 	public GameObject weapon02;
+	[SerializeField]
+	public GameObject weapon03;
 
 	public bool showItem1;
 	public bool showItem2;
+	public bool showItem3;
 
 	// Use this for initialization
 	void Start () 
 	{
 		showItem1 = true;
 		showItem2 = false;
+		showItem3 = false;
 	}
 	
 	// Update is called once per frame
@@ -39,16 +43,32 @@ public class WeaponSwitch : MonoBehaviour {
 		{
 			weapon02.SetActive (true);
 		}
+		if (showItem3 == false) 
+		{
+			weapon03.SetActive (false);
+		}
+		if (showItem3 == true) 
+		{
+			weapon03.SetActive (true);
+		}
 
 		if (Input.GetKeyDown (KeyCode.Alpha1) && showItem1 == false) 
 		{
 			showItem1 = true;
 			showItem2 = false;
+			showItem3 = false;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2) && showItem2 == false) 
 		{
 			showItem1 = false;
 			showItem2 = true;
+			showItem3 = false;
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha3) && showItem3 == false) 
+		{
+			showItem1 = false;
+			showItem2 = false;
+			showItem3 = true;
 		}
 	}
 }
