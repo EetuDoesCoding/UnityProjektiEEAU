@@ -663,7 +663,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dd24257445cb64f00992d47bd20f086b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.75
@@ -828,7 +828,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1220985155
+  randomSeed: 1346475645
   InitialModule:
     serializedVersion: 3
     enabled: 1
