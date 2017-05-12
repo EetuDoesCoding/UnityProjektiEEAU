@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
 	PlayerHealth playerHealth;      // Reference to the player's health.
 	EnemyHealth enemyHealth;        // Reference to this enemy's health.
 	NavMeshAgent nav;               // Reference to the nav mesh agent.
+	bool isDead;
 
 
 	void Awake ()
