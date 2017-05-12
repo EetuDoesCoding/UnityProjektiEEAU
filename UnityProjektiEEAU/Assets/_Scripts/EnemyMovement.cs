@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-	public Animation anim;
+	
 	Transform player;               // Reference to the player's position.
 	PlayerHealth playerHealth;      // Reference to the player's health.
 	EnemyHealth enemyHealth;        // Reference to this enemy's health.
 	NavMeshAgent nav;               // Reference to the nav mesh agent.
+	bool isDead;
 
 
 	void Awake ()
@@ -19,7 +20,6 @@ public class EnemyMovement : MonoBehaviour
 		playerHealth = player.GetComponent <PlayerHealth> ();
 		enemyHealth = GetComponent <EnemyHealth> ();
 		nav = GetComponent <NavMeshAgent> ();
-		anim = GetComponent <Animation> ();
 	}
 
 
@@ -30,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
 		{
 			// ... set the destination of the nav mesh agent to the player.
 			nav.SetDestination (player.position);
+
 		}
 		// Otherwise...
 		else
@@ -37,5 +38,8 @@ public class EnemyMovement : MonoBehaviour
 			// ... disable the nav mesh agent.
 			nav.enabled = false;
 		}
+
+
+
 	} 
 }
