@@ -11,9 +11,9 @@ public class EnemyHealth : MonoBehaviour
 	public AudioClip deathClip;                 // The sound to play when the enemy dies.
 
 
-	// Animator anim;                              // Reference to the animator.
+	Animator anim;                              // Reference to the animator.
 	AudioSource enemyAudio;                     // Reference to the audio source.
-	ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
+	// ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
 	CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
 	bool isDead;                                // Whether the enemy is dead.
 	bool isSinking;                             // Whether the enemy has started sinking through the floor.
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
 	void Awake ()
 	{
 		// Setting up the references.
-//		anim = GetComponent <Animator> ();
+		anim = GetComponent <Animator> ();
 		enemyAudio = GetComponent <AudioSource> ();
 //		hitParticles = GetComponentInChildren <ParticleSystem> ();
 		capsuleCollider = GetComponent <CapsuleCollider> ();
@@ -53,7 +53,7 @@ public class EnemyHealth : MonoBehaviour
 		enemyAudio.Play ();
 
 		// Reduce the current health by the amount of damage sustained.
-		currentHealth -= amount;
+		currentHealth -= amount;	
 
 		// Set the position of the particle system to where the hit was sustained.
 //		hitParticles.transform.position = hitPoint;
@@ -66,6 +66,15 @@ public class EnemyHealth : MonoBehaviour
 		{
 			// ... the enemy is dead.
 			Death ();
+			StartCoroutine (Example ());
+			//IEnumerator Example()
+			//{
+			//	print(Time.time);
+			//	yield return new WaitForSeconds (1);
+			//	print(Time.time);
+			//}
+			StartSinking ();
+
 		}
 	}
 
@@ -79,16 +88,13 @@ public class EnemyHealth : MonoBehaviour
 		capsuleCollider.isTrigger = true;
 
 		// Tell the animator that the enemy is dead.
-//		anim.SetTrigger ("Dead");
+		anim.SetTrigger ("Dead");
 
 		// Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
 		enemyAudio.clip = deathClip;
 		enemyAudio.Play ();
 
-		if (currentHealth <= 0) 
-		{
-			gameObject.SetActive (false);
-		}
+
 	}
 
 
@@ -108,5 +114,11 @@ public class EnemyHealth : MonoBehaviour
 
 		// After 2 seconds destory the enemy.
 		Destroy (gameObject, 2f);
+	}
+	IEnumerator Example()
+	{
+		print(Time.time);
+		yield return new WaitForSeconds (1);
+		print(Time.time);
 	}
 }
