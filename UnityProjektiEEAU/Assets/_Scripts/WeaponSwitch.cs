@@ -12,11 +12,14 @@ public class WeaponSwitch : MonoBehaviour {
 	public GameObject weapon03;
 	[SerializeField]
 	public GameObject weapon04;
+	[SerializeField]
+	public GameObject weapon05;
 
 	public bool showItem1;
 	public bool showItem2;
 	public bool showItem3;
 	public bool showItem4;
+	public bool showItem5;
 
 
 	// Use this for initialization
@@ -26,6 +29,7 @@ public class WeaponSwitch : MonoBehaviour {
 		showItem2 = false;
 		showItem3 = false;
 		showItem4 = false;
+		showItem5 = false;
 	}
 	
 
@@ -65,7 +69,14 @@ public class WeaponSwitch : MonoBehaviour {
 		{
 			weapon04.SetActive (true);
 		}
-
+		if (showItem5 == false) 
+		{
+			weapon05.SetActive (false);
+		}
+		if (showItem5 == true) 
+		{
+			weapon05.SetActive (true);
+		}
 
 
 		if (Input.GetKeyDown (KeyCode.Alpha1) && showItem1 == false) 
@@ -74,6 +85,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem2 = false;
 			showItem3 = false;
 			showItem4 = false;
+			showItem5 = false;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2) && showItem2 == false) 
 		{
@@ -81,6 +93,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem2 = true;
 			showItem3 = false;
 			showItem4 = false;
+			showItem5 = false;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha3) && showItem3 == false) 
 		{
@@ -88,6 +101,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem2 = false;
 			showItem3 = true;
 			showItem4 = false;
+			showItem5 = false;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha4) && showItem4 == false) 
 		{
@@ -95,6 +109,15 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem2 = false;
 			showItem3 = false;
 			showItem4 = true;
+			showItem5 = false;
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha5) && showItem5 == false) 
+		{
+			showItem1 = false;
+			showItem2 = false;
+			showItem3 = false;
+			showItem4 = false;
+			showItem5 = true;
 		}
 	}
 }
