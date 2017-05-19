@@ -50,6 +50,8 @@ public class EnemyAttack : MonoBehaviour
 
 	void Update ()
 	{
+		anim.SetBool ("Hit", false);
+
 		// Add the time since Update was last called to the timer.
 		timer += Time.deltaTime;
 
@@ -78,7 +80,14 @@ public class EnemyAttack : MonoBehaviour
 		if(playerHealth.currentHealth > 0)
 		{
 			// ... damage the player.
+			anim.SetBool ("Hit", true);
+			//Wait();
 			playerHealth.TakeDamage (attackDamage);
 		}
+	}
+	IEnumerator Wait() {
+		print (Time.time);
+		yield return new WaitForSeconds (1);
+		print (Time.time);
 	}
 }
