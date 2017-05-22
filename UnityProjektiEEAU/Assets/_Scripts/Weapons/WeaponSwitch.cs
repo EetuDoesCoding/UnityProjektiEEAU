@@ -15,7 +15,6 @@ public class WeaponSwitch : MonoBehaviour {
 	[SerializeField]
 	public GameObject weapon05;
 
-
 	public bool showItem1;
 	public bool showItem2;
 	public bool showItem3;
@@ -88,8 +87,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem4 = false;
 			showItem5 = false;
 		}
-//		if (Input.GetKeyDown (KeyCode.Alpha2) && showItem2 == false) 
-		if (GameObject.Find("SmgBuy").GetComponent<PurchaseWeapon>().current1 && showItem2 == false)
+		if (Input.GetKeyDown (KeyCode.Alpha2) && showItem2 == false) 
 		{
 			showItem1 = false;
 			showItem2 = true;
@@ -97,7 +95,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem4 = false;
 			showItem5 = false;
 		}
-		if (GameObject.Find("AkBuy").GetComponent<PurchaseAK>().current && showItem3 == false) 
+		if (Input.GetKeyDown (KeyCode.Alpha3) && showItem3 == false) 
 		{
 			showItem1 = false;
 			showItem2 = false;
