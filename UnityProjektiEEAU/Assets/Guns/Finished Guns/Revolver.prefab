@@ -769,6 +769,7 @@ MonoBehaviour:
   Ammoleft: 30
   full: 5
   StartAmmount: 5
+  MaxAmmo: 30
   In: {fileID: 0}
   Left: {fileID: 0}
   reloadTime: 1.8
@@ -828,7 +829,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1346475645
+  randomSeed: 946436532
   InitialModule:
     serializedVersion: 3
     enabled: 1

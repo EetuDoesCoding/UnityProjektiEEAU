@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PurchaseDoor : MonoBehaviour {
 
 public int PriceValue = 50;
-
+public Text DoorPrice;
 //Declaring variables
 bool crossedBoundary;
 
+//AudioSource BuyAudio;
+
+
+
+	void Awake ()
+	{
+//		BuyAudio = GetComponent<AudioSource> ();
+	}
 
 	void Start ()
 	{
@@ -16,9 +25,10 @@ bool crossedBoundary;
 
 	}
 
-	void OnTriggerStay(Collider other) 
+	void OnTriggerEnter(Collider other) 
 	{
-			crossedBoundary = true;
+		DoorPrice.text = "Purchase Door (Cost: 500)";	
+		crossedBoundary = true;
 	}
 
 
@@ -39,6 +49,8 @@ bool crossedBoundary;
 	void Buy ()
 	{
 		ScoreManager.score -= PriceValue;
+//		BuyAudio.Play ();
+		DoorPrice.text = "";
 		gameObject.SetActive (false);
 //		Destroy(this.gameObject);
 	}

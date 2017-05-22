@@ -43,7 +43,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1719203723927196
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409044273330706}
-  m_LocalRotation: {x: 0, y: 0.71940047, z: 0, w: 0.6945955}
+  m_LocalRotation: {x: 0, y: 0.7207326, z: 0, w: 0.69321316}
   m_LocalPosition: {x: -22.8982, y: -7.0191, z: -296.474}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
@@ -121,20 +121,20 @@ Transform:
   - {fileID: 4693690074132156}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 92.01, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 92.23, z: 0}
 --- !u!4 &4693690074132156
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719203723927196}
-  m_LocalRotation: {x: -0.00031485953, y: -0.021815905, z: -0.0031753865, w: 0.999757}
+  m_LocalRotation: {x: -0.00034864774, y: -0.011170973, z: -0.0031718542, w: 0.9999325}
   m_LocalPosition: {x: -0.012, y: 1.1527061, z: 2.501}
   m_LocalScale: {x: 0.08840035, y: 0.1016, z: 0.14560062}
   m_Children: []
   m_Father: {fileID: 4614123622012936}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -0.044000003, y: -2.5, z: -0.363}
+  m_LocalEulerAnglesHint: {x: -0.044000003, y: -1.28, z: -0.363}
 --- !u!23 &23011753150398088
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -320,12 +320,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1341187012625440, guid: 99e64a970e5a349189e7b7bebe93dc52, type: 2}
-  damagePerShot: 10
+  damagePerShot: 15
   delayTime: 0.18
   range: 100
   Ammoleft: 80
   full: 15
   StartAmmount: 15
+  MaxAmmo: 80
   In: {fileID: 0}
   Left: {fileID: 0}
   reloadTime: 2.2
@@ -385,7 +386,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1375384275
+  randomSeed: 1816299009
   InitialModule:
     serializedVersion: 3
     enabled: 1

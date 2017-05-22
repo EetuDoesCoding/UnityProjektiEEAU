@@ -79,7 +79,7 @@ public class WeaponSwitch : MonoBehaviour {
 		}
 
 
-		if (Input.GetKeyDown (KeyCode.Alpha1) && showItem1 == false) 
+		if (GameObject.Find("PistolBuy").GetComponent<PistolBuy>().Current2 && showItem1 == false) 
 		{
 			showItem1 = true;
 			showItem2 = false;
@@ -87,7 +87,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem4 = false;
 			showItem5 = false;
 		}
-		if (Input.GetKeyDown (KeyCode.Alpha2) && showItem2 == false) 
+		if (GameObject.Find("SmgBuy").GetComponent<SmgBuy>().Current && showItem2 == false)
 		{
 			showItem1 = false;
 			showItem2 = true;
@@ -95,7 +95,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem4 = false;
 			showItem5 = false;
 		}
-		if (Input.GetKeyDown (KeyCode.Alpha3) && showItem3 == false) 
+		if (GameObject.Find("AkBuy").GetComponent<AkBuy>().Current1 && showItem3 == false) 
 		{
 			showItem1 = false;
 			showItem2 = false;

@@ -321,11 +321,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1341187012625440, guid: 99e64a970e5a349189e7b7bebe93dc52, type: 2}
   damagePerShot: 15
-  delayTime: 0.1
+  delayTime: 0.09
   range: 100
-  Ammoleft: 120
-  full: 30
-  StartAmmount: 30
+  Ammoleft: 150
+  full: 20
+  StartAmmount: 20
+  MaxAmmo: 150
   In: {fileID: 0}
   Left: {fileID: 0}
   reloadTime: 2
@@ -385,7 +386,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -637496701
+  randomSeed: -531891589
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -225,9 +225,10 @@ MonoBehaviour:
   damagePerShot: 20
   delayTime: 0.15
   range: 100
-  Ammoleft: 120
+  Ammoleft: 150
   full: 30
   StartAmmount: 30
+  MaxAmmo: 150
   In: {fileID: 0}
   Left: {fileID: 0}
   reloadTime: 2
@@ -287,7 +288,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 583748802
+  randomSeed: 798917648
   InitialModule:
     serializedVersion: 3
     enabled: 1

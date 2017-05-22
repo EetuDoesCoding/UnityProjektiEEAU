@@ -18,7 +18,7 @@ public class Shoot : MonoBehaviour {
 //	private int reserve = 50;
 
 	//NEW//	
-	public float Ammoleft, full, StartAmmount;
+	public float Ammoleft, full, StartAmmount, MaxAmmo;
 	private float ShotsFired, Shots;
 	public Text In, Left;
 
@@ -47,6 +47,8 @@ public class Shoot : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		Shots = StartAmmount;
+		Ammoleft = MaxAmmo;
 		isReloading = false;
 		animator.SetBool ("Reloading", false);
 	}
