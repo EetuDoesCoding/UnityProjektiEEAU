@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
 	PlayerHealth playerHealth;      // Reference to the player's health.
 	EnemyHealth enemyHealth;        // Reference to this enemy's health.
 	NavMeshAgent nav;               // Reference to the nav mesh agent.
+	Animator anim;
 
 
 
@@ -20,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
 		playerHealth = player.GetComponent <PlayerHealth> ();
 		enemyHealth = GetComponent <EnemyHealth> ();
 		nav = GetComponent <NavMeshAgent> ();
+		anim = GetComponent <Animator> ();
 	}
 
 
@@ -37,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
 		{
 			// ... disable the nav mesh agent.
 			nav.enabled = false;
+			anim.SetTrigger ("PlayerDead");
 		}
 
 

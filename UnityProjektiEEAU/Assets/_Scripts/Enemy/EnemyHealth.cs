@@ -69,7 +69,7 @@ public class EnemyHealth : MonoBehaviour
 		{
 			// ... the enemy is dead.
 			Death ();
-			StartCoroutine (Example ());
+			//StartCoroutine (Example ());
 			//IEnumerator Example()
 			//{
 			//	print(Time.time);
