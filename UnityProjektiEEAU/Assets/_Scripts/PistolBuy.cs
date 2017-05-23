@@ -12,6 +12,13 @@ public bool Current2 = false;
 //Declaring variables
 bool crossedBoundary;
 
+AudioSource BuyAudio;
+
+	void Awake ()
+	{
+		BuyAudio = GetComponent<AudioSource> ();
+	}
+
 
 	void Start ()
 	{
@@ -44,7 +51,7 @@ bool crossedBoundary;
 	{
 		ScoreManager.score -= PriceValue;
 		Current2 = true;
-
+		BuyAudio.Play ();
 //		Destroy(this.gameObject);
 //		gameObject.SetActive (false);
 	}

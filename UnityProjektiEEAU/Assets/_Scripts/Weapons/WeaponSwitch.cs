@@ -103,7 +103,7 @@ public class WeaponSwitch : MonoBehaviour {
 			showItem4 = false;
 			showItem5 = false;
 		}
-		if (Input.GetKeyDown (KeyCode.Alpha4) && showItem4 == false) 
+		if (GameObject.Find("M4Buy").GetComponent<M4Buy>().Current3 && showItem4 == false) 
 		{
 			showItem1 = false;
 			showItem2 = false;

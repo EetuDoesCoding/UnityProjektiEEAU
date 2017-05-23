@@ -10,7 +10,7 @@ public Text DoorPrice;
 //Declaring variables
 bool crossedBoundary;
 
-	public int SpawnCount = 0;
+public int SpawnCount = 0;
 //AudioSource BuyAudio;
 
 
