@@ -9,8 +9,8 @@ public int PriceValue = 50;
 public Text DoorPrice;
 //Declaring variables
 bool crossedBoundary;
+EnemyManager enemyManager;
 
-public int SpawnCount = 0;
 //AudioSource BuyAudio;
 
 
@@ -23,6 +23,7 @@ public int SpawnCount = 0;
 	void Start ()
 	{
 		gameObject.SetActive (true);
+		enemyManager = GetComponentInChildren <EnemyManager> ();
 
 	}
 
@@ -50,7 +51,7 @@ public int SpawnCount = 0;
 	void Buy ()
 	{
 		ScoreManager.score -= PriceValue;
-		SpawnCount += 1;
+		EnemyManager.spawnCount += 1;
 //		BuyAudio.Play ();
 		DoorPrice.text = "";
 		gameObject.SetActive (false);
