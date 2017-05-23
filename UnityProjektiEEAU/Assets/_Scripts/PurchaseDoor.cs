@@ -10,6 +10,7 @@ public Text DoorPrice;
 //Declaring variables
 bool crossedBoundary;
 
+	public int SpawnCount = 0;
 //AudioSource BuyAudio;
 
 
@@ -25,9 +26,9 @@ bool crossedBoundary;
 
 	}
 
-	void OnTriggerEnter(Collider other) 
+	void OnTriggerEnter(Collider other)
 	{
-		DoorPrice.text = "Purchase Door (Cost: 500)";	
+		DoorPrice.text = "Purchase Barricade (Cost: 500)";	
 		crossedBoundary = true;
 	}
 
@@ -49,6 +50,7 @@ bool crossedBoundary;
 	void Buy ()
 	{
 		ScoreManager.score -= PriceValue;
+		SpawnCount += 1;
 //		BuyAudio.Play ();
 		DoorPrice.text = "";
 		gameObject.SetActive (false);
@@ -62,6 +64,3 @@ bool crossedBoundary;
 	}
 
 }
-
-//			GUI.Label(new Rect(600, 300, 100, 20), "Open Barricade (Cost: 750)");
-//			gameObject.SetActive (false);
