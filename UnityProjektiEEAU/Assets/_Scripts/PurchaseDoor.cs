@@ -28,7 +28,7 @@ public int SpawnCount = 0;
 
 	void OnTriggerEnter(Collider other)
 	{
-		DoorPrice.text = "Purchase Barricade (Cost: 500)";	
+		DoorPrice.text = "Purchase Barricade (Cost: 750)";	
 		crossedBoundary = true;
 	}
 

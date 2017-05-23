@@ -27,7 +27,7 @@ AudioSource BuyAudio;
 
 	void OnTriggerEnter(Collider other) 
 	{
-		M4Price.text = "Purchase Weapon (Cost: 500)";	
+		M4Price.text = "Purchase Weapon (Cost: 1000)";	
 		crossedBoundary = true;
 	}
 
