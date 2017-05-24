@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour {
 
@@ -26,7 +27,8 @@ public class GameOverManager : MonoBehaviour {
 
 			if (Input.GetMouseButtonDown(0)) 
 			{
-				Application.LoadLevel (Application.loadedLevel);
+//				Application.LoadLevel (Application.loadedLevel);
+				SceneManager.LoadScene(0);
 			}
 		}
 	}
